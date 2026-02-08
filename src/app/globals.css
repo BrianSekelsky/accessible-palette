@@ -3,6 +3,8 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --focus-ring: #2563eb;
+  --focus-ring-offset: #ffffff;
 }
 
 @theme inline {
@@ -16,6 +18,8 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --focus-ring: #60a5fa;
+    --focus-ring-offset: #0a0a0a;
   }
 }
 
@@ -23,4 +27,82 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ============================================
+   Accessibility Utilities
+   ============================================ */
+
+/**
+ * Skip Navigation Link
+ * Visually hidden until focused, allowing keyboard users to skip to main content
+ */
+.skip-nav {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  background: var(--foreground);
+  color: var(--background);
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 0 0 0.375rem 0;
+  transition: top 0.2s ease-in-out;
+}
+
+.skip-nav:focus {
+  top: 0;
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/**
+ * Visually Hidden
+ * Hides content visually but keeps it accessible to screen readers
+ */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/**
+ * Focus Indicators
+ * Ensure all interactive elements have visible focus states
+ */
+*:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: 0.25rem;
+}
+
+/* Remove default focus outline for mouse users, but keep for keyboard */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/**
+ * Reduced Motion Support
+ * Respect user's preference to reduce animations
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .skip-nav {
+    transition: none;
+  }
 }
