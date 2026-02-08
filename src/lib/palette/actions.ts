@@ -81,3 +81,13 @@ export function resetPalette(): PaletteAction {
     type: 'RESET_PALETTE',
   };
 }
+
+/**
+ * Replace entire color palette
+ */
+export function replaceColors(colors: ColorEntry[]): PaletteAction {
+  return {
+    type: 'REPLACE_COLORS',
+    payload: colors,
+  };
+}

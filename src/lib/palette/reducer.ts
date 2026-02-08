@@ -133,6 +133,18 @@ export function paletteReducer(
       return initialPaletteState;
     }
 
+    case 'REPLACE_COLORS': {
+      // Enforce min/max constraints
+      const colors = action.payload;
+      if (colors.length < 2 || colors.length > 12) {
+        return state;
+      }
+      return {
+        ...state,
+        colors,
+      };
+    }
+
     default: {
       // TypeScript will ensure this is never reached if all cases are handled
       return state;

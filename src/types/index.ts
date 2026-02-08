@@ -20,6 +20,7 @@ export type ColorRole =
   | 'warning'
   | 'success'
   | 'info'
+  | 'border'
   | 'custom';
 
 /**
@@ -90,4 +91,5 @@ export type PaletteAction =
   | { type: 'SET_CONTRAST_STANDARD'; payload: 'WCAG2' | 'APCA' }
   | { type: 'SET_TARGET_LEVEL'; payload: 'AA' | 'AAA' }
   | { type: 'SET_MODE'; payload: 'light' | 'dark' | 'both' }
-  | { type: 'RESET_PALETTE' };
+  | { type: 'RESET_PALETTE' }
+  | { type: 'REPLACE_COLORS'; payload: ColorEntry[] };

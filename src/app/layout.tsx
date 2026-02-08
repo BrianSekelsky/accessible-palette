@@ -3,6 +3,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SkipNav } from "@/components/ui/SkipNav";
 import { PaletteProvider } from "@/lib/palette/context";
+import { AnnouncementProvider } from "@/lib/announcements/context";
+import { AnnouncementDisplay } from "@/components/ui/AnnouncementDisplay";
+import { ColorBlindnessProvider } from "@/contexts/ColorBlindnessContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,13 +36,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="stylesheet" href="https://use.typekit.net/iky6dlg.css" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <SkipNav />
-        <PaletteProvider>
-          {children}
-        </PaletteProvider>
+        <AnnouncementProvider>
+          <AnnouncementDisplay />
+          <ColorBlindnessProvider>
+            <PaletteProvider>
+              {children}
+            </PaletteProvider>
+          </ColorBlindnessProvider>
+        </AnnouncementProvider>
       </body>
     </html>
   );

@@ -26,7 +26,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "neue-haas-grotesk-display", "neue-haas-grotesk-text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 /* ============================================
@@ -35,24 +35,40 @@ body {
 
 /**
  * Skip Navigation Link
- * Visually hidden until focused, allowing keyboard users to skip to main content
+ * Completely hidden until focused, allowing keyboard users to skip to main content
+ * Uses visually-hidden pattern by default, then reveals on focus
  */
 .skip-nav {
+  /* Visually hidden by default - completely invisible to sighted users */
   position: absolute;
-  top: -40px;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.skip-nav:focus {
+  /* Override visually-hidden styles to make visible when focused */
+  position: fixed;
+  top: 0;
   left: 0;
-  z-index: 100;
+  width: auto;
+  height: auto;
   padding: 0.75rem 1rem;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+  z-index: 100;
   background: var(--foreground);
   color: var(--background);
   text-decoration: none;
   font-weight: 600;
   border-radius: 0 0 0.375rem 0;
-  transition: top 0.2s ease-in-out;
-}
-
-.skip-nav:focus {
-  top: 0;
   outline: 3px solid var(--focus-ring);
   outline-offset: 2px;
 }
@@ -100,9 +116,5 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
-  }
-
-  .skip-nav {
-    transition: none;
   }
 }
