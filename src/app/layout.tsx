@@ -6,6 +6,7 @@ import { PaletteProvider } from "@/lib/palette/context";
 import { AnnouncementProvider } from "@/lib/announcements/context";
 import { AnnouncementDisplay } from "@/components/ui/AnnouncementDisplay";
 import { ColorBlindnessProvider } from "@/contexts/ColorBlindnessContext";
+import { ThemeProvider } from "@/components/theme/ThemeProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,22 +36,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="stylesheet" href="https://use.typekit.net/iky6dlg.css" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SkipNav />
-        <AnnouncementProvider>
-          <AnnouncementDisplay />
-          <ColorBlindnessProvider>
-            <PaletteProvider>
-              {children}
-            </PaletteProvider>
-          </ColorBlindnessProvider>
-        </AnnouncementProvider>
+        <ThemeProvider>
+          <SkipNav />
+          <AnnouncementProvider>
+            <AnnouncementDisplay />
+            <ColorBlindnessProvider>
+              <PaletteProvider>
+                {children}
+              </PaletteProvider>
+            </ColorBlindnessProvider>
+          </AnnouncementProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

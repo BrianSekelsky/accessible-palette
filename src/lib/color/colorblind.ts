@@ -115,7 +115,7 @@ export function simulateColorBlindness(hex: string, type: ColorBlindnessType): s
 export function getColorBlindnessLabel(type: ColorBlindnessType): string {
   switch (type) {
     case 'none':
-      return 'Normal Vision';
+      return 'Full Color';
     case 'protanopia':
       return 'Protanopia (Red-Blind)';
     case 'deuteranopia':

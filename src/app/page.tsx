@@ -4,16 +4,18 @@ import { DesignPreview } from '@/components/preview/DesignPreview';
 import { ContrastMatrix } from '@/components/matrix/ContrastMatrix';
 import { ExportPanel } from '@/components/export/ExportPanel';
 import { ColorBlindnessSimulator } from '@/components/palette/ColorBlindnessSimulator';
+import { ThemeToggle } from '@/components/theme/ThemeToggle';
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
       {/* Minimal Header */}
       <header className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
-        <div className="max-w-7xl mx-auto px-8 py-6">
+        <div className="max-w-7xl mx-auto px-8 py-6 flex items-center justify-between">
           <h1 className="font-normal text-gray-900 dark:text-gray-100">
             Accessible Color Palette Generator
           </h1>
+          <ThemeToggle />
         </div>
       </header>
 
